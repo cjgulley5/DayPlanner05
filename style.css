@@ -1,36 +1,36 @@
 body {
-    /* image for background */
+    
     background-image: url('./images/low_contrast_linen.png');
   
-    /* font parameters */
+  
     font-family: Arial, Helvetica, sans-serif;
     font-size: .8em;
   
-    /* added padding to prevent navbar overlap. (100 based on browser inpector of size) */
+    
     padding-top: 90px;
     vertical-align: middle;
   }
   
   
-  /*  need to make box fit space */
+  
   input {
     background: transparent;
     border: none;
   
-    /* so cursor appears */
+    
     padding-left: 3px;
   }
   
   
   .navbar {
-    /* background-color: #73919b;   */
+    
     background-color: hsl(200, 4%, 48%);  
     color: hsl(0, 87%, 47%);  
   
-    /* pulls everything down to push up against bottom border */
+    
     padding-bottom: 0;
     
-    /* creates solid line for the bottom border  */
+    
     border-bottom: solid;
     border-bottom-color: #ccc;
     width: 100%;
