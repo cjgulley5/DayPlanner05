@@ -1,42 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+   
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <title>Work Day Scheduler</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/6cbff65fb8.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.css">
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">Day Planner For:</p>
+      <p id="currentDay" class="lead"></p>
+    </header>
 
-
-  <title>Chris' Day Planner</title>
-</head>
-
-<body>
-  <nav class="navbar fixed-top">
-    <div class="header-text">
-      <h1 id="navbar-title">Chris' Day Planner</h1>
-      <h2 id="navbar-subtitle"></h2>
+    <div class="container">
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>9</span>AM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>10</span>AM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>11</span>AM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>12</span>PM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>1</span>PM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>2</span>PM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+       
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>3</span>PM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+      
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>4</span>PM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
+        
+        <div class="time-block row">
+            <div class="col-sm-1 hour">
+                <span>5</span>PM
+            </div>
+            <textarea class="col-sm-10">
+                
+            </textarea>
+            <button class="col-sm-1 saveBtn">
+                save
+            </button>
+        </div>
     </div>
-  </nav>
-  <form id='formPlanner'>
-    <div class="container" id="plannerContainer">
 
+    <script type="text/javascript">
+        const time = document.getElementById("currentDay");
+        setInterval(() => {
+          const now = moment();
+          const humanReadable = now.format('MMMM Do YYYY, h:mm:ss a');
+          time.textContent = humanReadable;
+        }, 1000)
+        timeUpdate ();
+        function timeUpdate(now) {
+        var beginningTime = moment("9:00:00 am", "h:mm:ss a");
+        var endingTime = moment("5:00:00 pm", "h:mm:ss a");
+        if (moment(beginningTime).isBefore(now)){
+            $("textarea").addClass("past");
+        }
+      
+        else if (moment(endingTime).isAfter(now)){
+            $("textarea").addClass("future");
+        }
+        else {
+            $("textarea").addClass("present");
+        }
+        }
+        
+        $("button").on('click', function (event) {
+            event.preventDefault();
+            var scheduleValue = $("textarea").val();
+            localStorage.setItem("scheduleValue", scheduleValue);
+            
+            sessionStorage.setItem('scheduleValue', scheduleValue);
+            var sesh = sessionStorage.getItem('scheduleValue');
+            
+        });
+          
+        </script>
+
+  </body>
+  <div class="card">
+    <div class="card text-center">
+    <div class="card-body">
+      DayPlannerHW-05 - Chris Gulley
     </div>
-  </form>
-
-
-  <nav class="navbar fixed-bottom footer">
-    <div class="footer-text">Made for the day to day planning bro !</div>
-  </nav>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"
-    integrity="sha256-H9jAz//QLkDOy/nzE9G4aYijQtkLt9FvGmdUTwBk6gs=" crossorigin="anonymous"></script>
-  <script src='./script.js'></script>
-</body>
-
+  </div>
 </html>
